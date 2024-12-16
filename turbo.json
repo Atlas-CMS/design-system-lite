@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "storybook-static/**"]
+    },
+    "@strapi/icons#build": {
+      "dependsOn": ["^build"],
+      "inputs": ["assets/**"],
+      "outputs": ["dist/**", "src/**"]
+    },
+    "clean": {
+      "cache": false,
+      "persistent": true
+    },
+    "develop": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "format": {},
+    "lint": { "dependsOn": ["^build"] },
+    "test": { "dependsOn": ["^build"] },
+    "test:ts": { "dependsOn": ["^build"] },
+    "test:e2e": {},
+    "test:e2e:ci": {}
+  }
+}

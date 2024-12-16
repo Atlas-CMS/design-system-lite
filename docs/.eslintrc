@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "extends": ["@strapi/eslint-config/front/typescript"],
+  "parserOptions": {
+    "project": ["./tsconfig.eslint.json"]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.eslint.json"
+      }
+    }
+  },
+  "ignorePatterns": ["**/*.mdx/*.{ts,tsx}"],
+  "overrides": [
+    {
+      "files": ["*.stories.tsx"],
+      "rules": {
+        "react-hooks/rules-of-hooks": "off",
+        "import/no-default-export": "off",
+        "no-console": "off"
+      }
+    },
+    {
+      "files": ["*.mdx"],
+      "extends": ["plugin:mdx/recommended"],
+      "rules": {
+        "import/namespace": "off",
+        "@typescript-eslint/no-unused-vars": "error"
+      }
+    }
+  ],
+  "rules": {
+    "import/no-unresolved": "off"
+  }
+}
