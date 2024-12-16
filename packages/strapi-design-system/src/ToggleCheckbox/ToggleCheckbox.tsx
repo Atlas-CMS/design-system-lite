@@ -27,7 +27,9 @@ export interface ToggleCheckboxProps extends Omit<React.InputHTMLAttributes<HTML
 
 type ValueBoxProps = Pick<ToggleCheckboxProps, 'checked' | 'disabled' | 'size'>;
 
-const ToggleCheckboxWrapper = styled(Box)<{ disabled: boolean; hasError: boolean }>`
+const ToggleCheckboxWrapper = styled(Box).attrs({
+  className: `atlas-ToggleCheckboxWrapper-root atlas-type-input`,
+})<{ disabled: boolean; hasError: boolean }>`
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : undefined)};
   // Masks the background of each value
   overflow: hidden;
@@ -37,6 +39,7 @@ const ToggleCheckboxWrapper = styled(Box)<{ disabled: boolean; hasError: boolean
 `;
 
 const ValueBox = styled(Flex).attrs<{ hasRadius: boolean }>({
+  className: `atlas-ValueBox-root atlas-type-input`,
   hasRadius: true,
 })<ValueBoxProps>`
   background-color: ${({ theme, checked, disabled }) => {

@@ -114,6 +114,8 @@ export type BoxProps<TElement extends keyof JSX.IntrinsicElements = 'div'> = Rea
 
     as?: string | React.ComponentType<any>;
     forwardedAs?: string | React.ComponentType<any>;
+
+    className?: string;
   };
 
 /**
@@ -126,9 +128,13 @@ const transientProps: Partial<Record<keyof BoxProps, boolean>> = {
   width: true,
 };
 
-export const Box = styled.div.withConfig<BoxProps>({
-  shouldForwardProp: (prop, defPropValFN) => !transientProps[prop as keyof BoxProps] && defPropValFN(prop),
-})`
+export const Box = styled.div
+  .attrs({
+    className: 'atlas-Box-root',
+  }) // @ts-ignore
+  .withConfig<BoxProps>({
+    shouldForwardProp: (prop, defPropValFN) => !transientProps[prop as keyof BoxProps] && defPropValFN(prop),
+  })`
   // Font
   font-size: ${({ fontSize, theme }) => extractStyleFromTheme(theme.fontSizes, fontSize, fontSize)};
 

@@ -14,7 +14,9 @@ export interface CheckboxInputProps {
   size: BaseCheckboxSize;
 }
 
-const CheckboxInput = styled.input`
+const CheckboxInput = styled.input.attrs({
+  className: 'atlas-BaseCheckbox-input atlas-type-input',
+})`
   height: ${getCheckboxSize};
   min-width: ${getCheckboxSize};
   margin: 0;
@@ -122,6 +124,7 @@ export const BaseCheckbox = React.forwardRef<CheckboxElement, BaseCheckboxProps>
 
     return (
       <Box>
+        {/* @ts-ignore */}
         <CheckboxInput
           size={size}
           checked={value}

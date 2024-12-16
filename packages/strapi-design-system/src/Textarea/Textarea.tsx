@@ -25,9 +25,12 @@ const Wrapper = styled(Box)`
   ${inputFocusStyle()}
 `;
 
-const TextareaElement = styled(Box)`
+const TextareaElement = styled(Box).attrs({
+  className: `atlas-Textarea-root atlas-type-input`,
+})`
   border: none;
   resize: none;
+  border-radius: ${({ theme }) => theme.radii.md};
 
   ::placeholder {
     color: ${({ theme }) => theme.colors.neutral500};

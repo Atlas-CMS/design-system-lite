@@ -17,7 +17,9 @@ const TableWrapper = styled(RawTable)`
 
 export type Overflowing = 'both' | 'left' | 'right';
 
-const TableBox = styled(Box)<{ overflowing?: Overflowing }>`
+const TableBox = styled(Box).attrs({
+  className: 'atlas-TableBox-root',
+})<{ overflowing?: Overflowing }>`
   &:before {
     // TODO: make sure to add a token for this weird stuff
     background: linear-gradient(90deg, #c0c0cf 0%, rgba(0, 0, 0, 0) 100%);

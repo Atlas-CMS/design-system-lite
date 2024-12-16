@@ -12,7 +12,7 @@ interface ModalHeaderProps {
 }
 
 const ModalHeaderWrapper = styled(Box)`
-  border-radius: ${({ theme }) => theme.borderRadius} ${({ theme }) => theme.borderRadius} 0 0;
+  border-radius: ${({ theme }) => theme.radii.lg} ${({ theme }) => theme.radii.lg} 0 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.neutral150};
 `;
 

@@ -21,7 +21,9 @@ const LoadingWrapper = styled.div`
   will-change: transform;
 `;
 
-const TextButtonWrapper = styled(Flex)`
+const TextButtonWrapper = styled(Flex).attrs({
+  className: `atlas-TextButton-root`,
+})`
   border: none;
 
   &[aria-disabled='true'] {

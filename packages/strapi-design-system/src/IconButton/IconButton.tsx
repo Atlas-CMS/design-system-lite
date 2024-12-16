@@ -106,7 +106,9 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   },
 );
 
-const IconButtonWrapper = styled(BaseButton)<Required<Pick<IconButtonProps, 'size' | 'variant'>>>`
+const IconButtonWrapper = styled(BaseButton).attrs({
+  className: `atlas-IconButton-root`,
+})<Required<Pick<IconButtonProps, 'size' | 'variant'>>>`
   background-color: ${({ theme, variant }) => {
     if (variant === VARIANT_SECONDARY) {
       return theme.colors.primary100;
@@ -162,7 +164,9 @@ const IconButtonWrapper = styled(BaseButton)<Required<Pick<IconButtonProps, 'siz
   }
 `;
 
-export const IconButtonGroup = styled(Flex)`
+export const IconButtonGroup = styled(Flex).attrs({
+  className: `atlas-IconButtonGroup-root`,
+})`
   & span:first-child button {
     border-left: 1px solid ${({ theme }) => theme.colors.neutral200};
     border-radius: ${({ theme }) => `${theme.borderRadius} 0 0 ${theme.borderRadius}`};

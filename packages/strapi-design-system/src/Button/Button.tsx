@@ -24,7 +24,9 @@ const LoaderAnimated = styled(Loader)`
   will-change: transform;
 `;
 
-export const ButtonWrapper = styled(BaseButton)<Required<Pick<ButtonProps, 'size' | 'variant'>>>`
+export const ButtonWrapper = styled(BaseButton).attrs({
+  className: `atlas-Button-root`,
+})<Required<Pick<ButtonProps, 'size' | 'variant'>>>`
   height: ${({ theme, size }) => theme.sizes.button[size]};
 
   svg {

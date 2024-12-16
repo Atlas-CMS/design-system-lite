@@ -26,11 +26,17 @@ export type TypographyProps<TElement extends keyof JSX.IntrinsicElements = 'span
     textDecoration?: CSSProperties['textDecoration'];
     textTransform?: CSSProperties['textTransform'];
     variant?: (typeof TEXT_VARIANTS)[number];
+
+    className?: string;
   };
 
-export const Typography = styled.span.withConfig<TypographyProps>({
-  shouldForwardProp: (prop, defPropValFN) => !transientProps[prop as keyof TypographyProps] && defPropValFN(prop),
-})`
+export const Typography = styled.span
+  .attrs({
+    className: `atlas-Typography-root`,
+  }) // @ts-ignore
+  .withConfig<TypographyProps>({
+    shouldForwardProp: (prop, defPropValFN) => !transientProps[prop as keyof TypographyProps] && defPropValFN(prop),
+  })`
   ${variantStyle}
   ${ellipsisStyle}
 

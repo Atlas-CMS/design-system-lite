@@ -4,9 +4,10 @@ import { Flex, FlexProps } from '../Flex';
 import { Typography } from '../Typography';
 
 const Base = styled(Flex)<{ size: BadgeSize }>`
-  border-radius: ${({ theme, size }) => (size === 'S' ? '2px' : theme.borderRadius)};
   height: ${({ size, theme }) => theme.sizes.badge[size]};
+  border-radius: 99rem;
 `;
+// border-radius: ${({ theme, size }) => (size === 'S' ? '2px' : theme.borderRadius)};
 
 export type BadgeSize = 'S' | 'M';
 

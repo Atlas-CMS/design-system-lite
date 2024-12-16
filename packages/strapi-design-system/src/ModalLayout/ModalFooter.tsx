@@ -9,7 +9,7 @@ export interface ModalFooterProps {
 }
 
 const ModalFooterWrapper = styled(Box)`
-  border-radius: 0 0 ${({ theme }) => theme.borderRadius} ${({ theme }) => theme.borderRadius};
+  border-radius: 0 0 ${({ theme }) => theme.radii.lg} ${({ theme }) => theme.radii.lg};
   border-top: 1px solid ${({ theme }) => theme.colors.neutral150};
 `;
 

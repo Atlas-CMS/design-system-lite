@@ -45,7 +45,7 @@ export const TextInput = forwardRef<
   );
 
   return (
-    <div ref={inputWrapperRef}>
+    <div className="atlas-TextInput-root atlas-type-input" ref={inputWrapperRef}>
       <Field name={name} hint={hint} error={error} id={generatedId} required={required}>
         <Flex direction="column" alignItems="stretch" gap={1}>
           {label && <FieldLabel action={labelAction}>{label}</FieldLabel>}

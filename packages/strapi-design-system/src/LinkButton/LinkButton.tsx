@@ -9,7 +9,9 @@ import { getDisabledStyle, getHoverStyle, getActiveStyle, getVariantStyle } from
 import { Flex } from '../Flex';
 import { Typography } from '../Typography';
 
-const LinkWrapper = styled(BaseButtonWrapper)<Required<Pick<LinkButtonProps, 'variant'>>>`
+const LinkWrapper = styled(BaseButtonWrapper).attrs({
+  className: `atlas-LinkButton-root`,
+})<Required<Pick<LinkButtonProps, 'variant'>>>`
   &[aria-disabled='true'] {
     ${getDisabledStyle}
     &:active {
@@ -54,6 +56,7 @@ const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
     const paddingY = 4;
 
     return (
+      // @ts-ignore
       <LinkWrapper
         ref={ref}
         aria-disabled={disabled}

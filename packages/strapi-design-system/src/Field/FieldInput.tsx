@@ -48,6 +48,7 @@ export const FieldInput = forwardRef<HTMLInputElement, FieldInputProps>(
             {startAction}
           </Box>
         ) : null}
+        {/* @ts-ignore */}
         <Input
           id={id}
           name={name}
@@ -80,9 +81,11 @@ interface InputProps {
   $size: keyof DefaultTheme['sizes']['input'];
 }
 
-const Input = styled.input<InputProps>`
+const Input = styled.input.attrs({
+  className: `atlas-FieldInput-input`,
+})<InputProps>`
   border: none;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.radii.md};
   padding-bottom: ${({ $size }) => `${PADDING_Y[$size] / 16}rem`};
   padding-left: ${({ theme, hasLeftAction }) => (hasLeftAction ? 0 : theme.spaces[4])};
   padding-right: ${({ theme, hasRightAction }) => (hasRightAction ? 0 : theme.spaces[4])};
@@ -112,9 +115,11 @@ const Input = styled.input<InputProps>`
   }
 `;
 
-export const InputWrapper = styled(Flex)<{ disabled: boolean; hasError: boolean }>`
+export const InputWrapper = styled(Flex).attrs({
+  className: `atlas-FieldInput-root`,
+})<{ disabled: boolean; hasError: boolean }>`
   border: 1px solid ${({ theme, hasError }) => (hasError ? theme.colors.danger600 : theme.colors.neutral200)};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.radii.md};
   background: ${({ theme }) => theme.colors.neutral0};
   ${inputFocusStyle()}
 

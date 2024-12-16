@@ -20,6 +20,7 @@ export type FlexProps<TElement extends keyof JSX.IntrinsicElements = 'div'> = Bo
   inline?: boolean;
   justifyContent?: CSSProperties['justifyContent'];
   wrap?: CSSProperties['flexWrap'];
+  className?: string; // Add this line
 };
 
 export const Flex = styled(Box).withConfig<FlexProps>({

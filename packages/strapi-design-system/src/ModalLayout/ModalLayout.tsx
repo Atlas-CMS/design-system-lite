@@ -18,6 +18,10 @@ const ModalWrapper = styled(Flex)`
   inset: 0;
 `;
 
+const ModalBox = styled(Box).attrs({
+  className: 'atlas-ModalLayout-box',
+})``;
+
 export const ModalLayout = ({ onClose, labelledBy, ...props }: ModalLayoutProps) => {
   useLockScroll(true);
 
@@ -27,7 +31,7 @@ export const ModalLayout = ({ onClose, labelledBy, ...props }: ModalLayoutProps)
         <ModalWrapper justifyContent="center" paddingLeft={8} paddingRight={8} position="fixed" zIndex={4}>
           <FocusTrap>
             <DismissibleLayer onEscapeKeyDown={onClose} onPointerDownOutside={onClose}>
-              <Box
+              <ModalBox
                 aria-labelledby={labelledBy}
                 aria-modal
                 onClick={(e) => e.stopPropagation()}

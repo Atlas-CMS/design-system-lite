@@ -19,7 +19,9 @@ interface SharedLinkProps extends BaseLinkProps {
 
 export type LinkButtonProps = SharedLinkProps & BaseButtonProps;
 
-const LinkWrapper = styled(BaseButtonWrapper)`
+const LinkWrapper = styled(BaseButtonWrapper).attrs({
+  className: 'atlas-LinkButton-root v2',
+})`
   text-decoration: none;
 
   &[aria-disabled='true'] {
@@ -49,6 +51,7 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
     const paddingY = 4;
 
     return (
+      // @ts-ignore
       <LinkWrapper
         ref={ref}
         aria-disabled={disabled}
