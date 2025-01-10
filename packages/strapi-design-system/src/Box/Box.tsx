@@ -116,24 +116,38 @@ export type BoxProps<TElement extends keyof JSX.IntrinsicElements = 'div'> = Rea
     forwardedAs?: string | React.ComponentType<any>;
 
     className?: string;
+    /**
+     * If `true`, apply the class "atlas-Paper-root"
+     */
+    paper?: boolean; // <-- Add this
   };
 
 /**
  * Prevents these attributes from being spread on the DOM node
  */
+
 const transientProps: Partial<Record<keyof BoxProps, boolean>> = {
   color: true,
   cursor: true,
   height: true,
   width: true,
+  paper: true, // <-- Add this so it doesn't get passed to DOM
 };
 
 export const Box = styled.div
-  .attrs({
-    className: 'atlas-Box-root',
-  }) // @ts-ignore
+  .attrs<BoxProps>(({ paper, className = '' }) => ({
+    // Dynamically build the className to include atlas-Paper-root if `paper` is true.
+    className: [
+      className, // keep any user-passed classes
+      'atlas-Box-root', // always include
+      paper && 'atlas-Paper-root', // conditionally include
+    ]
+      .filter(Boolean)
+      .join(' '),
+  }))
   .withConfig<BoxProps>({
-    shouldForwardProp: (prop, defPropValFN) => !transientProps[prop as keyof BoxProps] && defPropValFN(prop),
+    shouldForwardProp: (prop, defaultValidatorFn) =>
+      !transientProps[prop as keyof BoxProps] && defaultValidatorFn(prop),
   })`
   // Font
   font-size: ${({ fontSize, theme }) => extractStyleFromTheme(theme.fontSizes, fontSize, fontSize)};
@@ -156,7 +170,6 @@ export const Box = styled.div
   // Responsive hiding
   ${({ theme, hiddenS }) => (hiddenS ? `${theme.mediaQueries.tablet} { display: none; }` : undefined)}
   ${({ theme, hiddenXS }) => (hiddenXS ? `${theme.mediaQueries.mobile} { display: none; }` : undefined)}
-  
 
   // Borders
   border-radius: ${({ theme, hasRadius, borderRadius }) => (hasRadius ? theme.borderRadius : borderRadius)};
@@ -164,12 +177,9 @@ export const Box = styled.div
   border-width: ${({ borderWidth }) => borderWidth};
   border-color: ${({ borderColor, theme }) => extractStyleFromTheme(theme.colors, borderColor, undefined)};
   border: ${({ theme, borderColor, borderStyle, borderWidth }) => {
-    // This condition prevents borderColor from override the border-color attribute when not passing borderStyle nor borderWidth
     if (borderColor && !borderStyle && typeof borderWidth === 'undefined') {
       return `1px solid ${theme.colors[borderColor]}`;
     }
-
-    // eslint-disable-next-line consistent-return
     return undefined;
   }};
 
