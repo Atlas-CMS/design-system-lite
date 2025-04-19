@@ -4,6 +4,7 @@ import styled, { keyframes } from 'styled-components';
 
 import loaderSvg from './assets/loader.svg';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { useDesignSystem } from '../DesignSystemProvider';
 
 const rotation = keyframes`
   from {
@@ -25,6 +26,8 @@ interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(({ children, small = false, ...props }, ref) => {
+  const { setGlobalLoading, globalLoading } = useDesignSystem('Loader');
+
   return (
     <div role="alert" aria-live="assertive" ref={ref} {...props}>
       <VisuallyHidden>{children}</VisuallyHidden>

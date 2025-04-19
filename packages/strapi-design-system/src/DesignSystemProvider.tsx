@@ -1,5 +1,7 @@
-import { createContext } from './helpers/context';
 import { ThemeProvider, ThemeProviderProps } from './ThemeProvider';
+import { createContext } from './helpers/context';
+
+import { useState } from 'react';
 
 const DEFAULT_LOCALE = 'en-EN';
 
@@ -14,20 +16,33 @@ const getDefaultLocale = () => {
 
   return DEFAULT_LOCALE;
 };
-
-interface DesignSystemContextValue {
+interface StrapiDesignSystemContextValue {
   locale: string;
 }
 
+type DesignSystemContextValue = StrapiDesignSystemContextValue & {
+  setGlobalLoading: (loading: boolean) => void;
+  globalLoading: boolean;
+};
+
 const [Provider, useDesignSystem] = createContext<DesignSystemContextValue>('StrapiDesignSystem', {
   locale: getDefaultLocale(),
+  setGlobalLoading: () => {},
+  globalLoading: false,
 });
 
 interface DesignSystemProviderProps extends ThemeProviderProps, Partial<DesignSystemContextValue> {}
 
 const DesignSystemProvider = ({ locale = getDefaultLocale(), ...restProps }: DesignSystemProviderProps) => {
+  const [globalLoading, setGlobalLoading] = useState(false);
+
+  const stateProps = {
+    setGlobalLoading,
+    globalLoading,
+  };
+
   return (
-    <Provider locale={locale}>
+    <Provider locale={locale} {...stateProps}>
       <ThemeProvider {...restProps} />
     </Provider>
   );

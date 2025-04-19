@@ -7,6 +7,7 @@ import { ThemeProvider as StyledThemeProvider, createGlobalStyle, DefaultTheme }
 
 import { LiveRegions } from '../LiveRegions/LiveRegions';
 import { lightTheme } from '../themes';
+import { useDesignSystem } from 'src/DesignSystemProvider';
 
 const GlobalStyle = createGlobalStyle`
  /* http://meyerweb.com/eric/tools/css/reset/ 
